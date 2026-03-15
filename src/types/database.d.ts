@@ -1,4 +1,4 @@
-// @db-hash 0f9789bd5ad2eebd79bd502988efcb4e
+// @db-hash b3d5757aa69747b0cd4d69fbbeca2dc4
 //该文件由脚本自动生成，请勿手动修改
 
 export interface t_aiModelMap {
@@ -8,12 +8,14 @@ export interface t_aiModelMap {
   'name'?: string | null;
 }
 export interface t_assets {
+  'dialogue'?: string | null;
   'duration'?: string | null;
   'episode'?: string | null;
   'filePath'?: string | null;
   'id'?: number;
   'intro'?: string | null;
   'name'?: string | null;
+  'narration'?: string | null;
   'projectId'?: number | null;
   'prompt'?: string | null;
   'remark'?: string | null;
@@ -23,6 +25,7 @@ export interface t_assets {
   'state'?: string | null;
   'type'?: string | null;
   'videoPrompt'?: string | null;
+  'voiceId'?: string | null;
 }
 export interface t_chatHistory {
   'data'?: string | null;
@@ -83,6 +86,7 @@ export interface t_project {
   'type'?: string | null;
   'userId'?: number | null;
   'videoRatio'?: string | null;
+  'visualStyle'?: string | null;
 }
 export interface t_prompts {
   'code'?: string | null;
@@ -141,6 +145,7 @@ export interface t_user {
 export interface t_video {
   'aiConfigId'?: number | null;
   'configId'?: number | null;
+  'dialogue'?: string | null;
   'errorReason'?: string | null;
   'filePath'?: string | null;
   'firstFrame'?: string | null;
@@ -153,22 +158,41 @@ export interface t_video {
   'storyboardImgs'?: string | null;
   'time'?: number | null;
 }
+export interface t_video_chat {
+  'content': string;
+  'createTime': number;
+  'id'?: number;
+  'role': string;
+  'videoId': number;
+}
+export interface t_video_subtitle {
+  'endTime': number;
+  'id'?: number;
+  'sortOrder'?: number;
+  'speaker'?: string | null;
+  'startTime': number;
+  'text': string;
+  'videoId': number;
+}
 export interface t_videoConfig {
   'aiConfigId'?: number | null;
   'audioEnabled'?: number | null;
   'createTime'?: number | null;
+  'dialogue'?: string | null;
   'duration'?: number | null;
   'endFrame'?: string | null;
   'id'?: number;
   'images'?: string | null;
   'manufacturer'?: string | null;
   'mode'?: string | null;
+  'narration'?: string | null;
   'projectId'?: number | null;
   'prompt'?: string | null;
   'resolution'?: string | null;
   'scriptId'?: number | null;
   'selectedResultId'?: number | null;
   'startFrame'?: string | null;
+  'subtitleEnabled'?: number | null;
   'updateTime'?: number | null;
 }
 export interface t_videoModel {
@@ -199,6 +223,8 @@ export interface DB {
   "t_textModel": t_textModel;
   "t_user": t_user;
   "t_video": t_video;
+  "t_video_chat": t_video_chat;
+  "t_video_subtitle": t_video_subtitle;
   "t_videoConfig": t_videoConfig;
   "t_videoModel": t_videoModel;
 }

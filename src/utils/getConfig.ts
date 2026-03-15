@@ -15,7 +15,7 @@ interface TextResData extends BaseConfig {
 
 // 图像模型配置接口
 interface ImageResData extends BaseConfig {
-  manufacturer: "gemini" | "volcengine" | "kling" | "vidu" | "runninghub" | "apimart" | "other";
+  manufacturer: "gemini" | "volcengine" | "kling" | "vidu" | "runninghub" | "apimart" | "tencent" | "other";
 }
 
 interface VideoResData extends BaseConfig {

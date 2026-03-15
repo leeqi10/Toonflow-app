@@ -10,6 +10,7 @@ import runninghub from "./owned/runninghub";
 import apimart from "./owned/apimart";
 import other from "./owned/other";
 import gemini from "./owned/gemini";
+import hunyuan from "./owned/hunyuan";
 import modelScope from "./owned/modelScope";
 import grsai from "./owned/grsai";
 
@@ -26,6 +27,7 @@ const modelInstance = {
   kling: kling,
   vidu: vidu,
   runninghub: runninghub,
+  tencent: hunyuan,
   // apimart: apimart,
   modelScope,
   other,

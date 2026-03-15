@@ -59,6 +59,13 @@ const modelList: Owned[] = [
     grid: true,
     type: "ti2i",
   },
+  // 腾讯混元
+  {
+    manufacturer: "tencent",
+    model: "hunyuan-image-3.0",
+    grid: false,
+    type: "ti2i",
+  },
 ];
 
 export default modelList;
