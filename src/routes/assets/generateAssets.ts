@@ -125,6 +125,17 @@ export default router.post(
     });
     const apiConfig = await u.getPromptAi("assetsImage");
 
+    // 调试日志：方便排查生成卡住 / 失败问题
+    console.log("[assets/generateAssets] start", {
+      assetsId: id,
+      type,
+      projectId,
+      imageId,
+      aiManufacturer: apiConfig?.manufacturer,
+      aiModel: apiConfig?.model,
+      hasBase64: !!base64,
+    });
+
     try {
       const contentStr = await u.ai.image(
         {
@@ -136,6 +147,12 @@ export default router.post(
         },
         apiConfig,
       );
+
+      console.log("[assets/generateAssets] ai.image success", {
+        assetsId: id,
+        imageId,
+        type,
+      });
 
       let insertType;
       const match = contentStr.match(/base64,([A-Za-z0-9+/=]+)/);
@@ -166,6 +183,12 @@ export default router.post(
       await u.oss.writeFile(imagePath!, buffer);
       const imageData = await u.db("t_image").where("id", imageId).select("*").first();
       if (imageData) {
+        console.log("[assets/generateAssets] db update success", {
+          assetsId: id,
+          imageId,
+          imagePath,
+          insertType,
+        });
         await u.db("t_image").where("id", imageId).update({
           state: "生成成功",
           filePath: imagePath,
@@ -178,9 +201,16 @@ export default router.post(
 
         return res.status(200).send(success({ path, assetsId: id }));
       } else {
+        console.warn("[assets/generateAssets] image record missing", { assetsId: id, imageId });
         return res.status(500).send("资产已被删除");
       }
     } catch (e) {
+      console.error("[assets/generateAssets] error", {
+        assetsId: id,
+        imageId,
+        type,
+        err: u.error(e),
+      });
       await u.db("t_image").where("id", imageId).update({
         state: "生成失败",
       });
